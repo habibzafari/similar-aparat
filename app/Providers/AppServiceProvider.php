@@ -20,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Passport::enablePasswordGrant();
+        Passport::enablePasswordGrant();
+        // $this->registerPolicies();
+
+        // Passport::routes();
     }
 }

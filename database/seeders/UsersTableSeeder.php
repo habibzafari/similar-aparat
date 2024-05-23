@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         $this->createAdmin();
         $this->createUser();
+        $this->createTest();
     }
 
     private function createAdmin(): void
@@ -41,5 +42,17 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->save();
         $this->command->info('کاربر پیش فرض ایجاد شد');
+    }
+    private function createTest(): void
+    {
+        $user = User::factory()->make([
+            'type' => User::TYPES_USER,
+            'name' => 'کاربر تستی',
+            'email' => 'test@test.com',
+            'password' => bcrypt('test@123'),
+            'mobile' => '+989333333333',
+        ]);
+        $user->save();
+        $this->command->info('کاربر تستی ایجاد شد');
     }
 }

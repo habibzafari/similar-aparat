@@ -13,18 +13,15 @@ return new class extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->text('info');
+            $table->foreignId('user_id')
+            ->constrained('users')
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
+            $table->string('name');
+            $table->text('info')->nullable();
             $table->string('banner')->nullable();
             $table->text('socials')->nullable();
             $table->timestamps();
-            // $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
         });
     }
 

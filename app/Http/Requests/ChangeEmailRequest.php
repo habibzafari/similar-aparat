@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
-use App\Rules\Mobile;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterVerifyUserRequest extends FormRequest
+class ChangeEmailRequest extends FormRequest
 {
-    use GetRegisterFieldAndValueTrait;
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,10 +21,9 @@ class RegisterVerifyUserRequest extends FormRequest
      */
     public function rules()
     {
+        $userid = auth()->id();
         return [
-            'code' => 'required|string',
-            'email' => 'sometimes|required_without:mobile|email',
-            'mobile' => ['required_without:email|numeric','sometimes',new Mobile],
+            'email' => 'required|email|unique:users,email'
         ];
     }
 }

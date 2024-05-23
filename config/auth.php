@@ -43,6 +43,7 @@ return [
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -119,5 +120,6 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
     'resend_verification_code_time_diff'=> env('RESEND_VERIFICATION_CODE_TIME_DIFF',3600),
+    'change_email_cache_expiration'=> env('EXPIRATION_CHANGE_EMAIL_CACHE',3600),
 
 ];
